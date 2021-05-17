@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS waterworld_movies;
