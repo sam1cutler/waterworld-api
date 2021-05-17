@@ -18,8 +18,6 @@ moviesRouter
     })
     .post(jsonParser, (req, res, next) => {
 
-        console.log(req.body);
-
         const { Title, Year, imdbID } = req.body;
 
         const newMovie = {
@@ -28,15 +26,11 @@ moviesRouter
             imdbid: imdbID
         }
 
-        console.log(newMovie);
-        console.log(req.originalUrl);
-
         moviesService.addMovie(
             req.app.get('db'),
             newMovie
         )
             .then(movie => {
-                console.log(movie);
                 res
                     .status(201)
                     .location(path.posix.join(req.originalUrl), `/${movie.id}`)
@@ -60,7 +54,6 @@ moviesRouter
     })
     .patch(jsonParser, (req, res, next) => {
 
-        console.log(req.body);
         const { Title, Year, imdbID } = req.body;
 
         const updatedShowInfo = {
@@ -68,8 +61,6 @@ moviesRouter
             year: Year,
             imdbid: imdbID
         }
-
-        console.log(updatedShowInfo);
 
         moviesService.updateMovie(
             req.app.get('db'),
